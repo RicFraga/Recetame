@@ -1,0 +1,23 @@
+#color{
+    opacity: 5;
+    background: black;
+}
+
+#tamParallax{
+    height: 300px;
+}
+
+.formatoTexto{
+  
+  padding: 2px 5px;
+  text-align: justify;
+
+}
+
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+}
+
+.overflow-visible {
+    white-space: initial;
+  }
