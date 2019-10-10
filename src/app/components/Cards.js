@@ -33,9 +33,9 @@ class Cards extends Component{
                 this.state.arrRecetas.map( (receta) => {
                     return(
                         
-                        <div className="col s4">
+                        <div className="col s4" key={receta.id}>
                         
-                            <div className="card">
+                            <div className="card" >
                                 <div className="card-image">
                                     <img src={receta.link_imagen} />
                                     <span className="card-title">{receta.nombre}</span>

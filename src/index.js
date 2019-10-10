@@ -34,6 +34,10 @@ app.use( '/ipn/api', require('./routes/task.routes'));
 //Especificamos donde estarna nuestros archivos estaticos
 app.use(express.static(path.join(__dirname, 'public')));;
 
+app.get('/*', (req, res) =>{
+    res.sendFile( path.join(__dirname, 'public/index.html'));
+})
+
 console.log( path.join(__dirname, 'public' ));
 app.listen( app.get('port') , () => {
     //Mensaje que indica que el servidor se esta ejcutando
