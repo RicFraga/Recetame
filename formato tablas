@@ -17,13 +17,13 @@ link_imagen varchar(80) not null
 create table usuario(
 id serial PRIMARY KEY,
 nombre varchar(60) not null,
+apellido varchar(60) not null,
 nick varchar(60) not null,
 password varchar(10) not null,
 sexo varchar(15) not null,
 edad int2 not null,
 peso int2 not null,
-estatura int2 not null,
-favoritos varchar(100) FOREIGN KEY,
+estatura int2 not null
 );
 
 psql -h postgresql.guebs.net -U nombre_de_usuario -d nombre_de_base_de_datos

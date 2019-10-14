@@ -9,6 +9,12 @@
 
  const modelo = require("../models/modeloDB");
 
+ //Registro de usuarios
+
+ router.post( '/registrarUsuarios/usuario', function ( req, res){
+     console.log(req.params.nom );
+ })
+
  //Obtener todas las recetas
  router.get( '/consultarRecetasDB/', function ( req, res ) {
     modelo
