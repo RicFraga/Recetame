@@ -11,8 +11,15 @@
 
  //Registro de usuarios
 
- router.post( '/registrarUsuarios/usuario', function ( req, res){
-     console.log(req.params.nom );
+ router.post( '/registrarUsuarios', function ( req, res){
+     modelo.registrarUsuario( req.body )
+     .then( (resultado) => {
+         res.send( 'Ok' )
+     })
+     .catch( err => {
+         res.send( 'Nop' )
+         console.log( err )
+     })
  })
 
  //Obtener todas las recetas

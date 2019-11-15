@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import MyTheme from '../Styles/MyTheme.css';
+import '../Styles/MyTheme.css';
 
 class Search extends Component{
     render(){
         return(
             <div>
-            <nav>
+            <nav className="barraBusqueda">
                 <div className="nav-wrapper" id="color">
                 <form>
                     <div className="input-field">

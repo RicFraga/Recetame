@@ -9,6 +9,7 @@
 
 .formatoTexto{
   
+  margin-left: 100px;
   padding: 2px 5px;
   text-align: justify;
 
@@ -21,3 +22,13 @@
 .overflow-visible {
     white-space: initial;
   }
+
+  #tituloRecetas{
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    line-height: 1;
+    width: 100%;
+    background: rgba(0,0,0,.4);
+    color: #fff;
+  }
+

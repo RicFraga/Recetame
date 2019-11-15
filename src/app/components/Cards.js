@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import header from '../images/header.jpg';
 
-import MyTheme from '../Styles/MyTheme.css';
+import  '../Styles/MyTheme.css';
 
 import axios from 'axios';
 
@@ -12,6 +11,12 @@ class Cards extends Component{
         this.state = {
             arrRecetas: []
         }
+
+        this.verReceta = this.verReceta.bind(this);
+    }
+
+    verReceta(e, id){
+        
     }
 
     componentDidMount(){
@@ -27,7 +32,6 @@ class Cards extends Component{
 
             <div>
                 <div className="container">
-                    <h1> Top recetas </h1>
                     <div className="row">
             {
                 this.state.arrRecetas.map( (receta) => {
@@ -37,15 +41,15 @@ class Cards extends Component{
                         
                             <div className="card" >
                                 <div className="card-image">
-                                    <img src={receta.link_imagen} />
-                                    <span className="card-title">{receta.nombre}</span>
+                                    <img  src={receta.link_imagen} />
+                                    <span className="card-title" id="tituloRecetas">  {receta.nombre}  </span>
                                 </div>
 
                                 <div className="card-content">
                                     <p className="formatoTexto"><br/> {receta.intro}...<br></br> </p>
                                 </div>
                                 <div className="card-action">
-                                    <a href="#"> this is a link</a>
+                                    <a onClick={(e) => this.verReceta(e, receta.id)}> Ver Receta</a>
                                 </div>
                             </div>
                          

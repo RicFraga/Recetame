@@ -4,7 +4,7 @@ module.exports = {
 
 
     async consultarTodasLasRecetas( ){
-        let resultado = await conexion.query(" select id,nombre, substring(intro, 0, 200) as intro, link_imagen from recetas ");
+        let resultado = await conexion.query(" select id,nombre, substring(intro, 0, 180) as intro, link_imagen from recetas LIMIT 21");
         return resultado;
     },
 
@@ -35,5 +35,33 @@ module.exports = {
         const labels = result.labelAnnotations;
         console.log('Labels:' + labels.description );
         //labels.forEach(label => console.log("> " + label.description));
+    },
+
+    async registrarUsuario( usuario ){
+        var nombre = usuario.nombre;
+        var apellido = usuario.apellido;
+        var nickname = usuario.nickname;
+        var password = usuario.password;
+        var sexo = usuario.sexo;
+        var fecha = usuario.fecha;
+        var peso = usuario.peso;
+        var estatura = usuario.estatura;
+
+        fecha = new Date();
+        var today = new Date();
+
+        var age = today.getFullYear() - fecha.getFullYear();
+        var m = today.getMonth() - fecha.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < fecha.getDate())) {
+            age--;
+        }
+
+        var consulta = `Insert into usuarios values (DEFAULT,'${nombre}','${nickname}','${password}','${sexo}',${age},${peso},${estatura});`;
+
+        let resultado = await conexion.query(consulta);
+        return resultado;
+
     }
+
+    
 }

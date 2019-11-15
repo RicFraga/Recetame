@@ -14,7 +14,7 @@ colesterol int2,
 link_imagen varchar(80) not null
 );
     
-create table usuario(
+create table usuarios(
 id serial PRIMARY KEY,
 nombre varchar(60) not null,
 apellido varchar(60) not null,
@@ -22,9 +22,14 @@ nick varchar(60) not null,
 password varchar(10) not null,
 sexo varchar(15) not null,
 edad int2 not null,
-peso int2 not null,
-estatura int2 not null
+peso real not null,
+estatura real not null
 );
+
+create table favoritos ( id_r SMALLSERIAL not null, id_p serial not null );
+alter table favoritos add primary key ( id_r, id_p );
+alter table favoritos add foreign key (id_r) references recetas(id);
+alter table facoritos add foreign key (id_p) references usuarios(id);
 
 psql -h postgresql.guebs.net -U nombre_de_usuario -d nombre_de_base_de_datos
 

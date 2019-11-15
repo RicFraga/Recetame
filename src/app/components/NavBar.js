@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import MyTheme from '../Styles/MyTheme.css';
+import { Link } from 'react-router-dom';
+
+import  '../Styles/MyTheme.css';
 
 class NavBar extends Component{
   render(){
@@ -10,8 +12,8 @@ class NavBar extends Component{
              <a href="#!" className="brand-logo"><i className="material-icons">local_dining</i>Recetas</a>
               <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
               <ul className="right hide-on-med-and-down">
-                <li><a href="sass.html">Login</a></li>
-                <li><a href="badges.html">Signup</a></li>
+                <li><a href="sass.html">Iniciar</a></li>
+                <li>< Link to={"/Registro"} >Registro</Link></li>
               </ul>
             </div>
           </nav>

@@ -1,21 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 //Impor barra navegacion
-import BarraNavegacion from './NavBar';
 import Parallax from './Parallax';
-import Search from './Search';
-import Cards from './Cards';
 
-function Inicio(){
+import BarraNavegacion from './NavBar';
+
+
+class Inicio extends Component{
+
+
+render(){
     return(
         <div>
-            <BarraNavegacion></BarraNavegacion>
-            <Parallax></Parallax>
-            <Search>
-            </Search>
-            <Cards></Cards>
+            <BarraNavegacion/>
+            <Parallax/>
+            
         </div>
     )
+    }
 }
 
 export default Inicio;
