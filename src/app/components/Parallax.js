@@ -10,6 +10,8 @@ import Cards from './Cards';
 import Search from './Search';
 import ReactTags from 'react-tag-autocomplete'
 
+import axios from 'axios';
+
 import '../Styles/styleSearch.css';
 
 class Parallax extends Component {
@@ -18,6 +20,10 @@ class Parallax extends Component {
         super(props);
 
         this.state = {
+            recetas: [],
+            titulo: "",
+            auxRecetas: [],
+            busquedas: [],
             tags: [
             ]
         }
@@ -27,24 +33,67 @@ class Parallax extends Component {
 
     componentDidMount() {
         M.Parallax.init(this.Parallax1);
+
+        
+            axios.get('http://localhost:3000/ipn/api/consultarRecetasDB/')
+            .then( res => {
+                let arrRecetas = res.data.rows;
+                this.setState({ recetas: arrRecetas, auxRecetas: arrRecetas, titulo : "Top Recetas" });
+            })
+    
+        
     }
 
     onAddition(tag) {
-        console.log("Intento de agregar")
         const tags = [].concat(this.state.tags, tag)
         this.setState({ tags })
+
+        //Recuperar cadena para poder realizar la busqueda por ingredientes
+        
+        var cad = "";
+        for( var i=0; i<=this.state.tags.length; i++){
+            
+            if( i!= this.state.tags.length ){
+                cad+=tags[i].name + "&&";
+            }else{
+                cad+=tags[i].name;
+            }
+            
+        }
+
+ 
+        axios.get( 'http://localhost:3000/ipn/api/consultarRecetaPorIngredientes/'+cad )
+        .then( (res) => {
+            let recetasRes = res.data;
+            this.setState({recetas : recetasRes , titulo: "Resultados"})
+            this.state.busquedas.push( recetasRes );
+           
+
+        }).catch( (err) => {
+            console.log(err)
+        })
     }
 
     
 
     onDelete(i) {
-        console.log("Eliminando")
         const tags = this.state.tags.slice(0)
         tags.splice(i, 1)
         this.setState({ tags })
+
+        //Se elimina un elemento del arreglo de busquedas
+        this.state.busquedas.splice(i,1);
+        var arrRecetasOld = this.state.busquedas[ this.state.busquedas.length - 1];
+
+        if( tags.length === 0 ){
+            this.setState({recetas: this.state.auxRecetas, titulo:"Top Recetas"})
+        }else{
+            this.setState({recetas: arrRecetasOld})
+        }
     }
 
     render() {
+
         return (
             <div>
 
@@ -68,8 +117,8 @@ class Parallax extends Component {
                         />
                     </div>
 
-                    <h2 className="formatoTexto"> Top recetas</h2>
-                    <Cards></Cards>
+        <h2 className="formatoTexto"> {this.state.titulo} </h2>
+                    <Cards recetasList={this.state.recetas} titulo={this.state.titulo}/>
 
                 </div>
             </div>

@@ -9,6 +9,20 @@
 
  const modelo = require("../models/modeloDB");
 
+//Login
+
+router.post('/doLogin', function( req, res) {
+    modelo.login( req.body )
+    .then( (resultado) => {
+        res.send( resultado )
+    }).catch( err => {
+        res.send({status: "error"});
+        console.log( err )
+    })
+
+})
+
+
  //Registro de usuarios
 
  router.post( '/registrarUsuarios', function ( req, res){
@@ -65,14 +79,16 @@
     var cad  = "";
     for( let i=0; i<ingrs.length; i++){
         if( i == 0 ){
-            cad = `Ingredientes ilike '%${ingrs[0]}%'`
+            cad = `${ingrs[0]}`
         }else{
-            cad += ` OR ingredientes ilike '%${ingrs[i]}%'`;
+            cad += `|${ingrs[i]}`;
         }
     }
+
     modelo
         .consultarIngredientes( cad )
         .then( (recetas) => {
+            console.log( recetas )
             res.send( recetas );
         })
         .catch( err => {

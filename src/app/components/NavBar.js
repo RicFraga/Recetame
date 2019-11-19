@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import  '../Styles/MyTheme.css';
+import LoginModal from './LoginModal';
+
 
 class NavBar extends Component{
   render(){
@@ -12,7 +14,7 @@ class NavBar extends Component{
              <a href="#!" className="brand-logo"><i className="material-icons">local_dining</i>Recetas</a>
               <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
               <ul className="right hide-on-med-and-down">
-                <li><a href="sass.html">Iniciar</a></li>
+                <li></li>
                 <li>< Link to={"/Registro"} >Registro</Link></li>
               </ul>
             </div>
@@ -22,6 +24,8 @@ class NavBar extends Component{
             <li><a href="sass.html">Login</a></li>
             <li><a href="badges.html">Signup</a></li>
           </ul>
+
+          <LoginModal />
       </div>
     )
   }

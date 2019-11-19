@@ -8,8 +8,10 @@ class Cards extends Component{
     
     constructor( props ){
         super( props );
+
         this.state = {
-            arrRecetas: []
+            arrRecetas: [],
+            titulo: "",
         }
 
         this.verReceta = this.verReceta.bind(this);
@@ -18,23 +20,16 @@ class Cards extends Component{
     verReceta(e, id){
         
     }
-
-    componentDidMount(){
-        axios.get('http://localhost:3000/ipn/api/consultarRecetasDB/')
-        .then( res => {
-            let recetas = res.data.rows;
-            this.setState({ arrRecetas: recetas });
-        })
-    }
-    
+       
     render() {
+        
         return( 
 
             <div>
                 <div className="container">
                     <div className="row">
             {
-                this.state.arrRecetas.map( (receta) => {
+                this.props.recetasList.map( (receta) => {
                     return(
                         
                         <div className="col s4" key={receta.id}>

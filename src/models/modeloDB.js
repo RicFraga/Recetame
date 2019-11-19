@@ -19,7 +19,7 @@ module.exports = {
     },
 
     async consultarIngredientes( ingredientes ){
-        let resultados = await conexion.query( `select id, nombre from recetas where ` + ingredientes );
+        let resultados = await conexion.query( `select id,nombre, substring(intro, 0, 180) as intro, link_imagen from recetas  where ingredientes similar to '%(${ingredientes})%' LIMIT 21` );
         return resultados.rows;
     },
 
@@ -60,6 +60,22 @@ module.exports = {
 
         let resultado = await conexion.query(consulta);
         return resultado;
+
+    },
+
+    async login( usuario ){
+        var usr = usuario.Usuario;
+        var pss = usuario.Password;
+
+        var consulta = `select id,nombre from usuarios where nick='${usr}' and password='${pss}'`;
+
+        let resultado = await conexion.query(consulta);
+        
+        if( resultado.rowCount == 1){
+            return resultado.rows;
+        }
+
+            return -1;
 
     }
 
