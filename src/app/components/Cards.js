@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 
 import  '../Styles/MyTheme.css';
 
-import axios from 'axios';
+
+
 
 class Cards extends Component{
     
@@ -12,17 +14,26 @@ class Cards extends Component{
         this.state = {
             arrRecetas: [],
             titulo: "",
+            idReceta: null,
+            redirec: false
         }
 
         this.verReceta = this.verReceta.bind(this);
     }
 
     verReceta(e, id){
-        
+        //nuevo componente con el id como prop para hacer la busqueda
+        this.setState({redirec : true , idReceta : id})
     }
        
     render() {
+
+        if( this.state.redirec ){
+            return <Redirect to={`/Receta/${this.state.idReceta}`} />
+        }
         
+        
+
         return( 
 
             <div>

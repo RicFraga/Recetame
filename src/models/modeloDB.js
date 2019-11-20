@@ -18,6 +18,12 @@ module.exports = {
         return resultados.rows;
     },
 
+    async consultarPorId( id ){
+        let resultado = await conexion.query( `select * from recetas where id='${id}'`)
+
+        return resultado.rows;
+    }
+    ,
     async consultarIngredientes( ingredientes ){
         let resultados = await conexion.query( `select id,nombre, substring(intro, 0, 180) as intro, link_imagen from recetas  where ingredientes similar to '%(${ingredientes})%' LIMIT 21` );
         return resultados.rows;

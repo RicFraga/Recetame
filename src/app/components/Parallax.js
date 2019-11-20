@@ -4,7 +4,6 @@ import searchIcon from '../images/search icon.png'
 
 import M from 'materialize-css';
 import '../Styles/MyTheme.css';
-import ReactDOM from 'react-dom'
 
 import Cards from './Cards';
 import Search from './Search';
@@ -21,6 +20,7 @@ class Parallax extends Component {
 
         this.state = {
             recetas: [],
+            file: null,
             titulo: "",
             auxRecetas: [],
             busquedas: [],
@@ -29,6 +29,34 @@ class Parallax extends Component {
         }
 
         this.onAddition = this.onAddition.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange( e ){
+        this.setState({file: e.target.files[0]})
+        //console.log( e.target.files[0] )
+    }
+
+    onFormSubmit( e ){
+
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+
+        axios.post("http://localhost:3000/ipn/api/upload", formData,{
+
+        } )
+        .then( (res) => {
+            alert( res.statusText )
+        }).catch( (err) => {
+            alert(err)
+        })
+
     }
 
     componentDidMount() {
@@ -116,6 +144,8 @@ class Parallax extends Component {
                             
                         />
                     </div>
+
+                
 
         <h2 className="formatoTexto"> {this.state.titulo} </h2>
                     <Cards recetasList={this.state.recetas} titulo={this.state.titulo}/>

@@ -6,8 +6,25 @@
 
  const express = require('express');
  const router = express.Router();
+ const path = require("path");
 
  const modelo = require("../models/modeloDB");
+
+ //Para subir archivos utilizamos multer
+
+ const multer = require("multer");
+
+ var storage = multer.diskStorage({
+    destination: "../public/uploads",
+    filename: function(req, file, cb){
+       cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+    }
+ });
+
+ var upload = multer({
+    storage: storage,
+    
+}).single('file');
 
 //Login
 
@@ -72,6 +89,16 @@ router.post('/doLogin', function( req, res) {
     })
  });
 
+ //Obtener receta por id
+ router.get( '/consultarRecetaPorId/:id', function ( req, res ) {
+     modelo.consultarPorId( req.params.id )
+     .then( (receta) => {
+          res.send( receta )
+     }).catch( err => {
+         console.log( err )
+     })
+ })
+
  //Obtener recetas a partir de varios ingredientes separados
  //por &&
  router.get( '/consultarRecetaPorIngredientes/:ingredientes', function (req, res ){
@@ -96,6 +123,18 @@ router.post('/doLogin', function( req, res) {
         })
 
  });
+
+ router.post("/upload", function(req, res){
+     upload( req, res, function(err){
+         if( err instanceof multer.MulterError ){
+             return res.status(500).json(err)
+         }else if( err ){
+             return res.status(500).json(err)
+         }
+         console.log( req.file )
+         return res.status(200).send(req.file)
+     })
+ } );
 
  router.get( '/consultarRecetaPorImagen/:url', function ( req, res ){
      var cad = "https://www.recetasdesbieta.com/wp-content/uploads/2019/02/";
