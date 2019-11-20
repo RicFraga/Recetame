@@ -196,15 +196,18 @@ def obtener_info_platillo(url):
 	uClient.close()
 
 	lista_ing = ""
+	aux = []
 
 	archivo.write(nombre_platillo)	
 	archivo.write("\n")
 	archivo.write(info)
 	archivo.write("\n")
 	for i in range(0, len(ingredientes)):		
-		lista_ing = lista_ing + ingredientes[i]
-		lista_ing = lista_ing + "\n"
+		aux.append(ingredientes[i])
+		aux.append("\n")
+		lista_ing = lista_ing + aux[i]
 	archivo.write(lista_ing)
+	archivo.write("\n")
 	archivo.write(pasos)
 	archivo.write("\n")
 	archivo.write(str(calorias))
