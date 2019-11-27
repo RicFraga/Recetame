@@ -43,7 +43,7 @@ class Cards extends Component{
                 this.props.recetasList.map( (receta) => {
                     return(
                         
-                        <div className="col s4" key={receta.id}>
+                        <div className="col s6" key={receta.id}>
                         
                             <div className="card" >
                                 <div className="card-image">

@@ -13,7 +13,9 @@ import axios from 'axios';
 
 import '../Styles/styleSearch.css';
 
-class Parallax extends Component {
+
+
+ class Parallax extends Component {
 
     constructor(props) {
         super(props);
@@ -122,6 +124,8 @@ class Parallax extends Component {
 
     render() {
 
+        
+
         return (
             <div>
 
@@ -145,10 +149,22 @@ class Parallax extends Component {
                         />
                     </div>
 
-                
-
-        <h2 className="formatoTexto"> {this.state.titulo} </h2>
-                    <Cards recetasList={this.state.recetas} titulo={this.state.titulo}/>
+                    <div> 
+                        <form onSubmit={this.onFormSubmit} encType="multipart/form-data">
+                            <input type="file" name="myFile" />
+                            <input type="submit" value="enviar" />
+                        </form>
+                    </div>
+       
+                    <div className="container">
+                        <div className="row">
+                            <div className="col s12">
+                                <h2 className="formatoTexto"> {this.state.titulo} </h2>
+                                <Cards recetasList={this.state.recetas} titulo={this.state.titulo}/>
+                            </div>
+                        </div>
+                    </div>
+                    
 
                 </div>
             </div>

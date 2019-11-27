@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 
-class VistaRecetas extends Component{
+
+export class VistaRecetas extends Component{
 
     constructor( props ){
         super( props );
@@ -25,6 +27,11 @@ class VistaRecetas extends Component{
 
     render(){
 
+        const mapStyles = {
+            width: '80%',
+            height: '60%',
+          };
+
         console.log( this.state.receta )
         
         return ( 
@@ -38,6 +45,15 @@ class VistaRecetas extends Component{
                         <div className="col s12"> {this.state.receta.ingredientes } </div>
                         <div className="col s12"> {this.state.receta.pasos } </div>
                         <div className="col s12"> <h5> Información  </h5></div>
+                        <div className="col s12"> 
+                        <h5>  ¿ Dónde comprar los ingredientes ?</h5>
+                            <Map
+                                google={this.props.google}
+                                zoom={10}
+                                style={mapStyles}
+                                initialCenter={{ lat: 19.504610, lng: -99.147288}}
+                                />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,4 +62,6 @@ class VistaRecetas extends Component{
 
 }
 
-export default VistaRecetas;
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyD3qx1A5HpKAffq6Yx95OIB9t6nlL_Blcc'
+  })(VistaRecetas);
