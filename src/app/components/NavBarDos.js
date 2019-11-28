@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 import  '../Styles/MyTheme.css';
 import '../Styles/Inicio.css';
-import LoginModal from './LoginModal';
 
-import logo from '../images/logoEstesi.png'
+import logo from '../images/logoEstesiDos.png'
 
 class NavBar extends Component{
 
@@ -17,9 +16,6 @@ class NavBar extends Component{
      }
    }
 
-
-  
-
   render(){
     return(
       <div >
@@ -28,9 +24,6 @@ class NavBar extends Component{
              <a className="brand-logo"><img src={logo} className="logo"></img>Receta fácil</a>
               <a  data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
               <ul className="right hide-on-med-and-down">
-                
-                <li><LoginModal /></li>
-                <li>< Link to={"/Registro"} ><button className="waves-effect waves-light btn">Registro</button></Link></li>
                 
               </ul>
             </div>

@@ -3,7 +3,10 @@ import React, {Component} from 'react';
 //Impor barra navegacion
 import Parallax from './Parallax';
 
-import BarraNavegacion from './NavBar';
+import NavBar from './NavBar';
+
+import '../Styles/Inicio.css'
+
 
 
 class Inicio extends Component{
@@ -11,10 +14,9 @@ class Inicio extends Component{
 
 render(){
     return(
-        <div>
-            <BarraNavegacion/>
+        <div className="divInicio">
+            <NavBar mostrarInicio={true}/>
             <Parallax/>
-            
         </div>
     )
     }

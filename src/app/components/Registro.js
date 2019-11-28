@@ -118,7 +118,7 @@ class Registro extends Component {
   render() {
     return (
       <div className="row">
-        <NavBar/>
+        <NavBar mostrarInicio={false} />
         <div className="col s12">
           <div className="card " id="cardRegistro">
           <form onSubmit={ this.registrarUsuario }> 

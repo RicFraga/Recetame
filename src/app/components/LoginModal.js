@@ -3,6 +3,7 @@ import M from "materialize-css";
 import axios from 'axios';
 
 import '../Styles/materialize.min.css';
+import '../Styles/Inicio.css'
 
 class Modal extends Component {
 
@@ -75,7 +76,7 @@ class Modal extends Component {
 
   render() {
     return (
-      <div>
+      <div className="colorTexto">
         <a
           className="waves-effect waves-light btn modal-trigger"
           data-target="modal1"
@@ -115,7 +116,7 @@ class Modal extends Component {
      
     </div>
     <div className="modal-footer">
-      <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+      <a className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
         </div>
       </div>

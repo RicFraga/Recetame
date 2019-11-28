@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import  '../Styles/MyTheme.css';
 
@@ -29,7 +30,8 @@ class Cards extends Component{
     render() {
 
         if( this.state.redirec ){
-            return <Redirect to={`/Receta/${this.state.idReceta}`} />
+       
+            this.props.history.push(`/Receta/${this.state.idReceta}`)
         }
         
         
@@ -76,4 +78,4 @@ class Cards extends Component{
     }
 }
 
-export default Cards;
+export default withRouter(Cards);
